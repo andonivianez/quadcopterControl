@@ -1,8 +1,11 @@
 <div class="center">
-	<input type="text" id="ipAdress"/>
-	<md-button class="md-raised md-accent" flex>Conectar</md-button>
+	<input type="text" id="ipAdress" ng-model="ipAdress" />
+	<md-button class="md-raised md-accent" ng-click="ipConnection()" flex>Conectar</md-button>
 	<md-button ng-href="#fly" class="navigationStart md-raised md-accent" flex ng-disabled="!ws.opened">Enlazar navegacion</md-button>
-	<p class="md-warn" ng-show="ws.readyState == 3">La conexion del drone ha falldo</p>
+	<p class="md-warn" ng-show="ws.readyState == 3">La conexion del drone ha fallado, string de conexion: {{string}}</p>
 	<md-button class="md-primary" flex ng-show="ws.readyState == 3" ng-click="reconect()">Reconectar</md-button>
-	<div layout="row"><p class="md-warn" ng-show="ws.readyState == 0">Conexion en curso ...</p><!--<md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="20"></md-progress-circular>--></div>
+	<div layout="row">
+		<p class="md-warn" ng-show="ws.readyState == 0">Conexion en curso ...</p>
+		<md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+	</div>
 </div>

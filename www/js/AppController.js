@@ -23,7 +23,8 @@ app.controller('AppController', function($scope, $rootScope) {
 
     $scope.initWebsocket = function() {
         console.log('conection en cours');
-        $rootScope.ws = new WebSocket("ws://192.168.10.1/chatsocket");
+				$scope.string = "ws://" + document.getElementById("ipAdress").value + "/chatsocket";
+        $rootScope.ws = new WebSocket($scope.string);
 
         $rootScope.ws.onopen = function() {
             console.log('connected');
@@ -62,7 +63,7 @@ app.controller('AppController', function($scope, $rootScope) {
         }
 
         $scope.dosMill = function() {
-            $scope.dosMill = $scope.dosMill + "Send{2000, 2000, 2000, 2000}<br/>";
+            console.log("Send{2000, 2000, 2000, 2000}");
         }
     }
 
@@ -70,7 +71,12 @@ app.controller('AppController', function($scope, $rootScope) {
         $scope.initWebsocket();
     }
 
-    $scope.initialize();
+    $scope.ipConnection = function() {
+        $rootScope.ipAdress = $scope.ipAdress;
+        $scope.initialize();
+    }
+
+    //$scope.initialize();
 
     document.addEventListener("pause", function() {
         navigator.app.exitApp();
